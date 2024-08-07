@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "ListaEstatica.c"
+
+ListaEstatica lista;
 
 int main() {
     //Variável para guardar a opção escolhida.
     int option;
 
     system("cls");
-    printf("Bem-vindo a sua agenda!\n");
+    criarLista(&lista);
+    printf("\nBem-vindo a sua agenda!\n");
 
     //Loop para garantir o funcionamento do programa até a opção de saída é escolhida.
     do
@@ -25,8 +30,8 @@ int main() {
         {
         case 1:
             system("cls");
-            printf("Adiciona contato.\n");
-            //adicionaContato();
+            printf("Adicionar contato.\n");
+            adicionaContato(&lista);
             break;
         case 2:
             system("cls");
@@ -41,8 +46,8 @@ int main() {
         case 4:
             system("cls");
             printf("Listar contato.\n");
-            break;
             //listaContato();
+            break;
         case 5:
             system("cls");
             printf("Obrigado por usar agenda!");
