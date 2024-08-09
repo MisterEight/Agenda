@@ -3,20 +3,24 @@
 #include <string.h>
 #include "ListaEstatica.c"
 
+//Cria a variável que vai ter o struct da lista.
 ListaEstatica lista;
 
 int main() {
+    //Variável para guardar a opção escolhida.
     int option;
 
     limpaTerminal();
-    criarLista(&lista);
+    //Cria nossa lista.
+    lista.tamanho = 0;
     printf("Bem-vindo a sua agenda!");
 
+    //Esse loop serve como nosso menu principal, 
     do
     {
         printf("\nSelecione a opção desejada:");
         printf("\n1 - Adicionar contato.");
-            printf("\n2 - Remover contato.");
+        printf("\n2 - Remover contato.");
         printf("\n3 - Buscar contato.");
         printf("\n4 - Listar contatos.");
         printf("\n5 - Fechar a agenda.");
@@ -54,9 +58,5 @@ int main() {
             printf("Opção invalida!\n");
             break;
         }
-    } while (option != 5);
-    
-    
-
-    
+    } while (option != 5);   
 }
