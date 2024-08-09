@@ -19,8 +19,8 @@ typedef struct {
 
 void criarLista(ListaEstatica* lista);
 int adicionaContato(ListaEstatica* lista);
-int removeContato(ListaEstatica* lista, int id);
-Contato* buscaContato(ListaEstatica* lista, int id);
+void removeContato(ListaEstatica* lista);
+int buscaContato(ListaEstatica* lista);
 void listaContato(ListaEstatica* lista);
 void limpaBuffer();
 void limpaTerminal();
