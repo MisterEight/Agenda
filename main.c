@@ -16,10 +16,11 @@ int main() {
     {
         printf("\nSelecione a opção desejada:");
         printf("\n1 - Adicionar contato.");
-            printf("\n2 - Remover contato.");
-        printf("\n3 - Buscar contato.");
-        printf("\n4 - Listar contatos.");
-        printf("\n5 - Fechar a agenda.");
+        printf("\n2 - Inserir contato.");
+        printf("\n3 - Remover contato.");
+        printf("\n4 - Buscar contato.");
+        printf("\n5 - Listar contatos.");
+        printf("\n6 - Fechar a agenda.");
         printf("\nOpção desejada: ");
         scanf("%d", &option);
 
@@ -32,20 +33,25 @@ int main() {
             break;
         case 2:
             limpaTerminal();
+            printf("Inserir contato.\n");
+            inserirContato(&lista);
+            break;    
+        case 3:
+            limpaTerminal();
             printf("Remover contato.\n");
             removeContato(&lista);
             break;
-        case 3:
+        case 4:
             limpaTerminal();
             printf("Buscar contato.\n");
             buscaContato(&lista);
             break;
-        case 4:
+        case 5:
             limpaTerminal();
             printf("Listar contato.\n");
             listaContato(&lista);
             break;
-        case 5:
+        case 6:
             limpaTerminal();
             printf("Obrigado por usar agenda!");
             break;
@@ -54,7 +60,7 @@ int main() {
             printf("Opção invalida!\n");
             break;
         }
-    } while (option != 5);
+    } while (option != 6);
     
     
 

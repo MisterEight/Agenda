@@ -7,7 +7,7 @@ void criarLista(ListaEstatica* lista) {
     lista->tamanho = 0;
 };
 
-int adicionaContato(ListaEstatica* lista){
+Contato adicionaContato(ListaEstatica* lista){
     char contato_novo_nome[50];
     char contato_novo_email[50];
     char contato_novo_telefone[11];
@@ -54,6 +54,27 @@ int adicionaContato(ListaEstatica* lista){
     lista->tamanho += 1;
 
 };
+
+void inserirContato(ListaEstatica* lista) {
+
+    int index;
+
+    Contato contato_temp;
+
+    if (lista->tamanho == 0)
+    {
+        adicionaContato(lista);
+    }
+
+    printf("Onde você quer inserir o contato?");
+    scanf("%d", &index);
+
+    for (int i = index; i < lista->tamanho; i++)
+    {
+        contato_temp = lista->tamanho[i];
+
+    }
+}
 
 void removeContato(ListaEstatica* lista){
     int id;
@@ -107,7 +128,7 @@ int buscaContato(ListaEstatica* lista){
     if (lista->tamanho == 0)
     {
         printf("Não há contato para buscar!");
-        return;
+        return -1;
     }
 
     printf("Digite o nome do contato: ");
@@ -125,10 +146,10 @@ int buscaContato(ListaEstatica* lista){
             printf("\nNome do contato: %s", lista->contatos[i].nome);
             printf("Email do contato: %s", lista->contatos[i].email);
             printf("Telefone do contato: %s", lista->contatos[i].telefone);
-            
+
+            return i;
         }
     }
-    return;
 };
 
 void listaContato(ListaEstatica* lista){

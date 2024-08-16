@@ -19,6 +19,7 @@ typedef struct {
 
 void criarLista(ListaEstatica* lista);
 int adicionaContato(ListaEstatica* lista);
+void inserirContato(ListaEstatica* lista);
 void removeContato(ListaEstatica* lista);
 int buscaContato(ListaEstatica* lista);
 void listaContato(ListaEstatica* lista);
