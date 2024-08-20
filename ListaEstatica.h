@@ -5,6 +5,7 @@
 //Define o tamanho máximo do array
 #define MAX 100
 
+//Struct do contato que será guardado dentro da lista.
 typedef struct {
     char email[50];
     char nome[50];
@@ -12,12 +13,14 @@ typedef struct {
 } Contato;
 
 
+//Cria uma lista de contatos que tem um tamanho.
 typedef struct {
     Contato contatos[MAX];
     int tamanho;
 } ListaEstatica;
 
-void criarLista(ListaEstatica* lista);
+
+//Declaração das funções necessárias.
 int adicionaContato(ListaEstatica* lista);
 void inserirContato(ListaEstatica* lista);
 void removeContato(ListaEstatica* lista);
