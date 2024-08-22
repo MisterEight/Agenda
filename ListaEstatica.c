@@ -5,7 +5,7 @@
 
 
 //Função que cria e adiciona um contato na última posição da lista.
-int adicionaContato(ListaEstatica* lista){
+void adicionaContato(ListaEstatica* lista){
     //Declaração das variáveis que vão segurar os dados do novo contato.
     char contato_novo_nome[50];
     char contato_novo_email[50];
@@ -38,6 +38,7 @@ int adicionaContato(ListaEstatica* lista){
 
     Contato novo_contato;
     
+    //Copiando as informações que o usuário digitou para uma nova variável que será adicionada na lista.
     strncpy(novo_contato.nome, contato_novo_nome, sizeof(novo_contato.nome));
 
     strncpy(novo_contato.email, contato_novo_email, sizeof(novo_contato.nome));
@@ -49,6 +50,9 @@ int adicionaContato(ListaEstatica* lista){
 
     //Colocamos o novo contato dentro da lista.
 
+    //acessando essa lista.
+    //acessando o tamanho dela.
+    //colocando um contato
     lista->contatos[lista->tamanho] = novo_contato;
 
     printf("Nome do contato: %s", lista->contatos[lista->tamanho].nome);
@@ -58,9 +62,10 @@ int adicionaContato(ListaEstatica* lista){
     //Aumenta o tamanho da lista para que o próximo contato possa entrar na próxima posição
     lista->tamanho += 1;
 
-};
+    ordenarListaContatos(lista);
+}
 
-void inserirContato(ListaEstatica* lista) {
+/*void inserirContato(ListaEstatica* lista) {
 
     int index;
 
@@ -79,7 +84,7 @@ void inserirContato(ListaEstatica* lista) {
         contato_temp = lista->tamanho[i];
 
     }
-}
+}*/
 
 
 //Função que remove um contato da lista.
@@ -132,18 +137,21 @@ void removeContato(ListaEstatica* lista){
     lista->tamanho -= 1;
 
     printf("Contato removido!");
-};
+}
 
 int buscaContato(ListaEstatica* lista){
     //Declaração das variáveis que vão segurar os dados do novo contato.
-    int id; 
     char nome_buscar[50];
+    
+    int inicio = 0;
+
+    int fim = lista->tamanho-1;
 
     //Caso a lista esteja vazia.
     if (lista->tamanho == 0)
     {
         printf("Não há contato para buscar!");
-        return;
+        return -1;
     }
 
     printf("Digite o nome do contato: ");
@@ -153,22 +161,30 @@ int buscaContato(ListaEstatica* lista){
     fgets(nome_buscar,sizeof(nome_buscar),stdin);
 
     //Procura por cada contato, comparado seu nome com o nome digitado.
-    for (int i = 0; i < lista->tamanho; i++)
+    
+    for (int i = 0; inicio <= fim; i++)
     {
-        if (strcmp(nome_buscar,lista->contatos[i].nome) == 0)
-        {
-            printf("\nContato número %d.", i+1);
+        int index_meio = inicio + (fim - inicio) / 2;
 
-            printf("\nNome do contato: %s", lista->contatos[i].nome);
-            printf("Email do contato: %s", lista->contatos[i].email);
-            printf("Telefone do contato: %s", lista->contatos[i].telefone);
+        if (strcmp(nome_buscar,lista->contatos[index_meio].nome) == 0)
+        {
+            printf("\nContato número %d.", index_meio+1);
+
+            printf("\nNome do contato: %s", lista->contatos[index_meio].nome);
+            printf("Email do contato: %s", lista->contatos[index_meio].email);
+            printf("Telefone do contato: %s", lista->contatos[index_meio].telefone);
 
             return i;
+        } 
+        else if (strcmp(nome_buscar,lista->contatos[index_meio].nome) == -1)
+        {
+            fim = index_meio-1;
+        } else {
+            inicio = index_meio+1;
         }
     }
-    return;
-};
-
+    printf("Não achamos o contato!");
+}
 void listaContato(ListaEstatica* lista){    
     limpaTerminal();
 
@@ -189,7 +205,32 @@ void listaContato(ListaEstatica* lista){
         printf("Telefone do contato: %s", lista->contatos[i].telefone);
 
     }    
-};
+}
+
+void ordenarListaContatos(ListaEstatica* lista) {
+    //Se tiver apenas um contato, não terá como ordenar a lista
+    if (lista->tamanho == 1)
+    {
+        return;
+    }
+
+    //Algoritmo para sortear a lista.
+    //Cada letra tem um valor.
+    //Um valor pode ser maior ou menor que o próximo e o antepassado
+    
+    //Organizar a lista de forma alfabetica
+
+    // Beto, Carlos, Arthur = Arthur, Beto, Carlos
+
+    // Atrevessar pela lista
+    // 
+    // 0 
+    qsort(lista->contatos, lista->tamanho, sizeof(Contato), compareContatos);
+}
+
+int compareContatos(Contato *contato1,Contato *contato2) {
+    return strcmp(contato1->nome, contato2->nome);
+}
 
 void limpaBuffer(){
     //Limpa o buffer de teclado.

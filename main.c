@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ListaEstatica.c"
+#include <math.h>
 
 //Cria a variável que vai ter o struct da lista.
 ListaEstatica lista;
@@ -36,9 +37,9 @@ int main() {
             adicionaContato(&lista);
             break;
         case 2:
-            limpaTerminal();
-            printf("Inserir contato.\n");
-            inserirContato(&lista);
+            //limpaTerminal();
+            //printf("Inserir contato.\n");
+            //inserirContato(&lista);
             break;    
         case 3:
             limpaTerminal();
@@ -64,9 +65,5 @@ int main() {
             printf("Opção invalida!\n");
             break;
         }
-    } while (option != 5);
-    
-    
-
-    
+    } while (option != 6);
 }

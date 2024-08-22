@@ -12,7 +12,6 @@ typedef struct {
     char telefone[15];
 } Contato;
 
-
 //Cria uma lista de contatos que tem um tamanho.
 typedef struct {
     Contato contatos[MAX];
@@ -21,11 +20,12 @@ typedef struct {
 
 
 //Declaração das funções necessárias.
-int adicionaContato(ListaEstatica* lista);
-void inserirContato(ListaEstatica* lista);
+void adicionaContato(ListaEstatica* lista);
+int compareContatos(Contato *contato1,Contato *contato2);
 void removeContato(ListaEstatica* lista);
 int buscaContato(ListaEstatica* lista);
 void listaContato(ListaEstatica* lista);
+void ordenarListaContatos(ListaEstatica* lista);
 void limpaBuffer();
 void limpaTerminal();
 
