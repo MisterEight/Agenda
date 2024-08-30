@@ -58,5 +58,5 @@ int main() {
             printf("Opção invalida!\n");
             break;
         }
-    } while (option != 6);
+    } while (option != 5);
 }

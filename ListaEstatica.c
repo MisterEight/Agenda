@@ -79,7 +79,7 @@ void removeContato(ListaEstatica* lista){
     //Caso a lista esteja vazia.
     if (lista->tamanho == 0)
     {
-        printf("Não há contato parfa remover!");
+        printf("Não há contato para remover!");
         return;
     }
 
