@@ -2,9 +2,6 @@
 #ifndef LISTAESTATICA_H
 #define LISTAESTATICA_H
 
-//Define o tamanho máximo do array
-#define MAX 100
-
 //Struct do contato que será guardado dentro da lista.
 typedef struct {
     char email[50];
@@ -14,7 +11,7 @@ typedef struct {
 
 //Cria uma lista de contatos que tem um tamanho.
 typedef struct {
-    Contato contatos[MAX];
+    Contato contatos[100];
     int tamanho;
 } ListaEstatica;
 

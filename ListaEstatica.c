@@ -6,7 +6,15 @@
 
 //Função que cria e adiciona um contato na última posição da lista.
 void adicionaContato(ListaEstatica* lista){
+
+    if (lista->tamanho == 100)
+    {
+        printf("Lista cheia, remova um usuário para conseguir adicionar outro!");
+        return;
+    }
+
     //Declaração das variáveis que vão segurar os dados do novo contato.
+    
     char contato_novo_nome[50];
     char contato_novo_email[50];
     char contato_novo_telefone[11];
@@ -49,10 +57,6 @@ void adicionaContato(ListaEstatica* lista){
     printf("Novo contato criado!\n");
 
     //Colocamos o novo contato dentro da lista.
-
-    //acessando essa lista.
-    //acessando o tamanho dela.
-    //colocando um contato
     lista->contatos[lista->tamanho] = novo_contato;
 
     printf("Nome do contato: %s", lista->contatos[lista->tamanho].nome);
@@ -62,33 +66,14 @@ void adicionaContato(ListaEstatica* lista){
     //Aumenta o tamanho da lista para que o próximo contato possa entrar na próxima posição
     lista->tamanho += 1;
 
+    //Função para organizar a lista.
     ordenarListaContatos(lista);
 }
 
-/*void inserirContato(ListaEstatica* lista) {
-
-    int index;
-
-    Contato contato_temp;
-
-    if (lista->tamanho == 0)
-    {
-        adicionaContato(lista);
-    }
-
-    printf("Onde você quer inserir o contato?");
-    scanf("%d", &index);
-
-    for (int i = index; i < lista->tamanho; i++)
-    {
-        contato_temp = lista->tamanho[i];
-
-    }
-}*/
-
-
 //Função que remove um contato da lista.
+
 void removeContato(ListaEstatica* lista){
+    //id do contato.
     int id;
 
     //Caso a lista esteja vazia.
@@ -105,6 +90,8 @@ void removeContato(ListaEstatica* lista){
         lista->tamanho = 0;
         return;
     }
+
+    //Iremos pegar as informações do contato para remover.
 
     printf("Digite o número do contato: ");
 
@@ -143,6 +130,7 @@ int buscaContato(ListaEstatica* lista){
     //Declaração das variáveis que vão segurar os dados do novo contato.
     char nome_buscar[50];
     
+    //Precisamos do início da lista e do fim para a busca.
     int inicio = 0;
 
     int fim = lista->tamanho-1;
@@ -154,17 +142,20 @@ int buscaContato(ListaEstatica* lista){
         return -1;
     }
 
+    //Coletamos o nome que iremos buscar.
     printf("Digite o nome do contato: ");
 
     limpaBuffer();
 
     fgets(nome_buscar,sizeof(nome_buscar),stdin);
 
-    //Procura por cada contato, comparado seu nome com o nome digitado.
-    
+    //Procura por cada contato, comparado seu nome com o nome digitado até que o inicio não seja maior que fim.
     for (int i = 0; inicio <= fim; i++)
     {
+        //Pegamos o index do meio, com ele iremos comparar com o base para busca e verificar se ele está na metade superior ou inferior da lista.
         int index_meio = inicio + (fim - inicio) / 2;
+
+        //Iremos indentificar se o nome é igual, retornando 0, maior retornando um valor positivo, ou se o nome for menor, irá voltar um valor negativo, isso serve para identificar onde está o nome na lista.
 
         if (strcmp(nome_buscar,lista->contatos[index_meio].nome) == 0)
         {
@@ -183,7 +174,10 @@ int buscaContato(ListaEstatica* lista){
             inicio = index_meio+1;
         }
     }
+
+    //Caso ele passe por toda a lista e ainda não ache o nome.
     printf("Não achamos o contato!");
+    return -1;
 }
 void listaContato(ListaEstatica* lista){    
     limpaTerminal();
@@ -214,21 +208,12 @@ void ordenarListaContatos(ListaEstatica* lista) {
         return;
     }
 
-    //Algoritmo para sortear a lista.
-    //Cada letra tem um valor.
-    //Um valor pode ser maior ou menor que o próximo e o antepassado
-    
-    //Organizar a lista de forma alfabetica
-
-    // Beto, Carlos, Arthur = Arthur, Beto, Carlos
-
-    // Atrevessar pela lista
-    // 
-    // 0 
+    //Essa função pega nossa lista de contatos e compara eles por meio da função compareContatos, até que toda a lista esteja organizada.
     qsort(lista->contatos, lista->tamanho, sizeof(Contato), compareContatos);
 }
 
 int compareContatos(Contato *contato1,Contato *contato2) {
+    //Recebemos 2 contatos e iremos comparar eles para entender onde suas posições deveriam estar na lista.
     return strcmp(contato1->nome, contato2->nome);
 }
 
